@@ -8,11 +8,15 @@ class HttpError extends Error {
 		this.status = status
 	}
 
-	static unauthorizedError() {
+	static unauthorized() {
 		return new HttpError(
 			HttpStatusCode.UNAUTHORIZED_401,
 			'User is not authorized'
 		)
+	}
+
+	static forbidden() {
+		return new HttpError(HttpStatusCode.FORBIDDEN_403, 'Forbidden')
 	}
 
 	static badRequest(message: string) {

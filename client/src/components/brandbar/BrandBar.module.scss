@@ -1,0 +1,9 @@
+.item {
+	padding: 10px;
+	color: white;
+	transition: all 0.3s ease;
+	cursor: pointer;
+	&:hover {
+		background-color: rgb(33, 37, 41);
+	}
+}

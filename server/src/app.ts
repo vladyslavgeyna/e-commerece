@@ -1,7 +1,11 @@
+import brandRouter from '@resources/brand/brand.router'
+import deviceRouter from '@resources/device/device.router'
 import typeRouter from '@resources/type/type.router'
+import userRouter from '@resources/user/user.router'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express, { Application } from 'express'
+import fileUpload from 'express-fileupload'
 import path from 'path'
 import { AppDataSource } from './data-source'
 import errorMiddleware from './middlewares/error.middleware'
@@ -21,6 +25,9 @@ class App {
 
 	private initializeRoutes() {
 		this.app.use(this.getRouteUri('type'), typeRouter)
+		this.app.use(this.getRouteUri('brand'), brandRouter)
+		this.app.use(this.getRouteUri('device'), deviceRouter)
+		this.app.use(this.getRouteUri('user'), userRouter)
 	}
 
 	private getRouteUri(resourceName: string) {
@@ -31,6 +38,7 @@ class App {
 		this.app.use(express.static(path.join(__dirname, '../public')))
 		this.app.use(cookieParser())
 		this.app.use(express.json())
+		this.app.use(fileUpload({}))
 		this.app.use(cors())
 	}
 
